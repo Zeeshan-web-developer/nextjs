@@ -5,3 +5,7 @@ export async function GET(request) {
 export async function GET() {
   return new Response("api first")
 }
+
+export async function GET() {
+  return new Response("bug-fix branch")
+}
