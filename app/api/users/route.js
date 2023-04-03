@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server"
+import dbConnect from "../../config/db"
+import User from "../../MongoModels/userModel"
+
+// GET ALL USERS
 export async function GET(request, query) {
-  const { searchParams } = new URL(request.url) //get query params
-  const id = searchParams.get("id")
-  console.log("id", id)
-  return NextResponse.json({ user: "zeeshan" })
+  await dbConnect()
+  let res = await User.find()
+  console.log(res)
+  return NextResponse.json(res)
 }
