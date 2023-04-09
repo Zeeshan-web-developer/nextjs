@@ -7,7 +7,7 @@ export async function POST(request, query) {
   await dbConnect()
   const json = await request.json()
   const res = await User.create(json)
-  console.log(res)
+  console.log(res, json)
   return NextResponse.json(res)
 }
 

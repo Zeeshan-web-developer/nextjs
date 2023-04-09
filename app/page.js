@@ -7,28 +7,33 @@ import Users from "./componets/Users"
 
 async function getAllUsers() {
   try {
-    const res = await fetch("http://localhost:3000/api/users/", {
+    const res = await fetch("http://localhost:3000/api/users", {
       cache: "no-store",
     })
     let data = await res.json()
-    console.log(data)
     return data
   } catch (error) {
     console.log({ error })
   }
 }
-export async function generateMetadata() {
-  return { title: "Home" }
+// either Static metadata
+export const metadata = {
+  title: "Home Page",
+  description: "This is the home page",
 }
+
+// or Dynamic metadata
+// export async function generateMetadata({ params }) {
+//   return {
+//     title: '...',
+//   };
+// }
 export default async function Home() {
   const allUsers = await getAllUsers()
-  console.log({ allUsers })
   return (
-    <>
-      <main className={styles.main}>
-        <h2>Home</h2>
-        <Users {...{ allUsers }} />
-      </main>
-    </>
+    <main className={styles.main}>
+      <h2>Home</h2>
+      <Users {...{ allUsers }} />
+    </main>
   )
 }
